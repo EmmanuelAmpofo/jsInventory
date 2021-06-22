@@ -28,12 +28,22 @@ let show_modal_add = () => {
   document.getElementById("backdrop").style.top = "0"
 }
 
+let updateForm = () =>{
+  document.getElementById("update_backdrop").style.display = "block"
+  document.getElementById("qty_update").style.display = "block"
 
+}
+let dashboard = () =>{
+  document.getElementById("update_backdrop").style.display = "none"
+  document.getElementById("qty_update").style.display = "none"
+
+}
 
 let cancel = () => {
   document.getElementById("add_item_modal").style.top = "-65vh"
   document.getElementById("backdrop").style.top = "-110vh"
   reset()
+  window.location.href = "./index.html" //refresh homepage automatic
 }
 
 let reset = () => {
@@ -80,6 +90,7 @@ let add_item_modal = () => {
   }
 
   reset()
+ 
 }
 
 
@@ -90,15 +101,15 @@ let statusColor = () => {
 
   for (i = 0; i < products.length; i++) {
     qty_number = Number(products[i].qty_number);
-    console.log(qty_number)
+    // console.log(qty_number)
 
     if (qty_number === 0) {
       document.getElementById(`status_color${i}`).style.color = "red"
       document.getElementById(`status_color${i}`).innerText = "Out of Stock"
     }
     else if ((qty_number >= 1) && (qty_number <= 20)) {
-      document.getElementById(`status_color${i}`).style.color = "yellow"
-      document.getElementById(`status_color${i}`).innerText = "Almost Out"
+      document.getElementById(`status_color${i}`).style.color = "gold"
+      document.getElementById(`status_color${i}`).innerText = "Almost Out of Stock"
     }
     else {
       document.getElementById(`status_color${i}`).style.color = "green"
@@ -108,13 +119,43 @@ let statusColor = () => {
 }
 
 
+//get figures from array to display in html
+let figuresCalculation = () => {
+  let products = JSON.parse(localStorage.getItem("products"));
+  // console.log(products.length)
+
+  document.getElementById("numberOfItem").innerText = products.length
+  let quantityNumber =0;
+  let qtyInStock = () =>{
+    for (i=0; i < products.length; i++){
+      quantityNumber += Number(products[i].qty_number)
+
+      console.log(qty_number)
+
+    }
+    document.getElementById("itemInStock").innerText = quantityNumber;
+
+    
+  }
+  qtyInStock()
+  let distinctValues = [];
+  for (i=0; i < products.length; i++){
+    if(!distinctValues.includes(products[i].category.toLowerCase())){
+      distinctValues.push(products[i].category.toLowerCase());
+    }
+  }
+  
+  console.log(distinctValues)
+  document.getElementById("totalCategories").innerText = distinctValues.length;
+}
+
 //add products to table in html
 
 let product_added = document.getElementById("table_body")
 let displayProducts = () => {
   let i = 0;
   let products = JSON.parse(localStorage.getItem("products"))
-  console.log(products)
+  // console.log(products)
 
   let newItemAdd = (i) => {
     let itemLi = document.createElement("tr")
@@ -128,18 +169,20 @@ let displayProducts = () => {
   `
     product_added.append(itemLi)
   }
-  console.log(products.length)
+  // console.log(products.length)
 
   for (i; i < products.length; i++) {
     newItemAdd(i)
   }
 
   statusColor();
+  figuresCalculation()
 }
 displayProducts()
 
 
 
-// console.log(statusColor())
+
+
 
 
