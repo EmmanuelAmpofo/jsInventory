@@ -8,6 +8,18 @@
     width: 100%;
     height: 100%;
 }
+#backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: -110vh;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 10;
+    pointer-events: none;
+    transition: 1s;
+    
+  }
 .left_nav{
     border: 1px solid black;
     width: 15vw;
@@ -119,16 +131,26 @@ button:hover{
 }
 .description{
     margin-left: 1.5vw;
-    height: 50vh;
-    
+    height: 50vh; 
+}
+table th{
+    width: 30vw;
+    /* padding: 5px; */
+}
+tbody{
+    text-align: center;
+}
+.description ul li{
+    list-style: none;
 }
 .accordion {
     background-color: rgb(255, 255, 255);
     color: black;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 95%;
     text-align: left;
+    margin-left: 1vw;
     border: none;
     border-bottom: 2px solid #005b82;
     outline: none;
@@ -155,4 +177,70 @@ button:hover{
     display: none;
     overflow: hidden;
   }
+.add_item_modal{
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 5px 8px 15px #005b82;
+    width: 40vw;
+    height: 60vh;
+    z-index: 100;
+    position: absolute;
+    background-color: white;
+    left: 33vw;
+    padding-top: 3vh;
+    /* display: none; */
+    top: -65vh;
+    transition: 1s;
+}
+.add_item_modal input{
+    width: 30vw;
+    height: 5.5vh;
+    margin-left: 4vw;
+    
+}
+.add_item_modal label{
+    margin-left: 4vw;
+}
+.add_item_modal input:focus{
+    outline: none;
+}
+.add_item_modal button{
+    margin-top: 12vh;
+    height: 5vh;
+    width: 5vw;
+    font-size: 2.5vh;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-right: 2vw;
+    float: right;
+}
+.add_item_modal .cancel{
+    background-color: rgb(235, 81, 81);
+}
+.add_item_modal .modal_add_btn{
+    background-color: rgb(51, 177, 51);
+}
+.add_item_modal .cancel:hover{
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+}
+.add_item_modal .modal_add_btn:hover{
+    background-color: white;
+    border: 1px solid green;
+    color: green;
+}
+
+
+
+@media (max-width:420px) {
+    .add_item_modal button{
+        font-size: 1.5vw;
+    }
+    .output_display ul li{
+        height: 10vh;
+    }
+}
+
 

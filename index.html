@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <div id="backdrop"></div>
     <div class="main_container">
         <div class="left_nav">
             <i class="fa fa-tachometer" aria-hidden="true"></i>
 
             <ul>
                 <li>
-                    <button class="btn1" id="add_btn">ADD ITEM</button>
+                    <button class="btn1" id="add_btn" onclick="show_modal_add()">ADD ITEM</button>
                 </li>
                 <li>
                     <button class="btn2" id="update_qty">UPDATE QUANTITY</button>
@@ -33,7 +34,7 @@
             <div class="top_nav">
                 <ul>
                     <li>
-                        <i class="fa fa-cogs" aria-hidden="true"></i> Settings
+                        <i class="fa fa-cogs" aria-hidden="true"></i> Dashboard Settings
                     </li>
                     <li>
                         <i class="fa fa-sign-in" aria-hidden="true"></i> SignIn
@@ -44,40 +45,78 @@
             <div class="output_display">
                 <ul>
                     <li>
-                        <p>number</p> <br>
+                        <p id="numberOfItem">number</p> <br>
                         Number of Items
                     </li>
                     <li>
-                        <p>number</p><br>
+                        <p id="itemInStock">number</p><br>
                         Item in Stock
                     </li>
                     <li>
-                        <p>number</p> <br>
+                        <p id="totalCategories">number</p> <br>
                         Total Categories
                     </li>
                 </ul>
 
             </div>
             <div class="description">
-                <button class="accordion"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Sneakers</button>
+                <button class="accordion"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Show All</button>
                 <div class="panel">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, magni! Explicabo aspernatur incidunt dolores, assumenda commodi est veritatis iste error fugiat culpa fuga nisi libero eum voluptatibus ipsam quidem necessitatibus?</p>
+                    <p>
+                        <table  id="table_data">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Category
+                                    </th>
+                                    <th>
+                                        Quantity Available
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            
+                                
+                                    <tbody class="table_body" id="table_body">
+                                        <tr>
+                                            <td>AirForce 1</td>
+                                            <td>New Nike Airforce 1 trends here</td>
+                                            <td>Sneakers</td>
+                                            <td>10</td>
+                                            <td >Available</td>
+                                        </tr>
+                                    </tbody>
+                                
+                        
+                            
+                        </table>
+                    </p>
                 </div>
 
-                <button class="accordion"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Shirt</button>
-                <div class="panel">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, magni! Explicabo aspernatur incidunt dolores, assumenda commodi est veritatis iste error fugiat culpa fuga nisi libero eum voluptatibus ipsam quidem necessitatibus?</p>
-                </div>
-
-                <button class="accordion"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Shorts</button>
-                <div class="panel">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In, amet debitis fugiat earum alias minima repellat assumenda necessitatibus ipsa sapiente voluptatem aut rem veniam porro autem reiciendis ab iure fuga.</p>
-                </div>
-                <button class="accordion"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Laptop</button>
-                <div class="panel">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In, amet debitis fugiat earum alias minima repellat assumenda necessitatibus ipsa sapiente voluptatem aut rem veniam porro autem reiciendis ab iure fuga.</p>
-                </div>
+                
             </div>
+        </div>
+        <div class="add_item_modal" id="add_item_modal">
+            <label for="">Name</label> <br>
+            <input type="text" placeholder=""   id="name"> <br>
+            <label for="">Description</label> <br>
+            <input type="text" placeholder=""   id="description"> <br>
+            <label for="">Category</label> <br>
+            <input type="text" placeholder=""   id="category" required> <br>
+            <label for="">Quantity Available</label> <br>
+            <input type="number" placeholder="" id="qty_number"><br>
+
+            <button class="cancel" id="cancel" onclick="cancel()">Cancel</button>
+            <button class="modal_add_btn" id="modal_add_btn" onclick="add_item_modal()">Add</button>
+
         </div>
 
     </div>
