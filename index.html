@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Stylish Dashboard</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"> 
@@ -123,15 +123,16 @@
             <div class="qty_update" id="qty_update">
                 <h3>Update Quantity</h3> <br>
                 <label for="">Name</label><br>
-                <input type="text"><br>
+                <input type="text" id="update_name"><br>
                 <label for="">Quantity</label><br>
-                <input type="number"><br>
+                <input type="number" id="update_quty"><br>
     
                 
-                <button class="cancel" id="cancel">Cancel</button>
-                <button class="update" id="update">Update</button>
+                <button class="cancel" id="cancel1" onclick="dashboard()">Cancel</button>
+                <button class="update" id="update" onclick="updateQuantity()">Update</button>
             </div>
         </div>
+        
 
     </div>
     

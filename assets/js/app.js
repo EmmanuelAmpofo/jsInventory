@@ -36,6 +36,7 @@ let updateForm = () =>{
 let dashboard = () =>{
   document.getElementById("update_backdrop").style.display = "none"
   document.getElementById("qty_update").style.display = "none"
+  window.location.href = "./index.html" //refresh homepage automatic
 
 }
 
@@ -43,7 +44,8 @@ let cancel = () => {
   document.getElementById("add_item_modal").style.top = "-65vh"
   document.getElementById("backdrop").style.top = "-110vh"
   reset()
-  window.location.href = "./index.html" //refresh homepage automatic
+  // window.location.href = "./index.html"
+  
 }
 
 let reset = () => {
@@ -130,7 +132,7 @@ let figuresCalculation = () => {
     for (i=0; i < products.length; i++){
       quantityNumber += Number(products[i].qty_number)
 
-      console.log(qty_number)
+      // console.log(qty_number)
 
     }
     document.getElementById("itemInStock").innerText = quantityNumber;
@@ -145,7 +147,7 @@ let figuresCalculation = () => {
     }
   }
   
-  console.log(distinctValues)
+  // console.log(distinctValues)
   document.getElementById("totalCategories").innerText = distinctValues.length;
 }
 
@@ -179,6 +181,34 @@ let displayProducts = () => {
   figuresCalculation()
 }
 displayProducts()
+
+let updateQuantity = () =>{
+  let updateName = document.getElementById("update_name").value
+  let updateValue = document.getElementById("update_quty").value
+  console.log(updateValue)
+  console.log(updateName)
+  let products = JSON.parse(localStorage.getItem("products"))
+  if((updateName === "") || (updateValue === "")){
+    alert("Please enter valid information")
+    return
+  }
+  else{
+    for(i=0; i < products.length; i++){
+      if(products[i].item_name === updateName ){
+       console.log(updateValue)
+        products[i].qty_number = updateValue
+      }
+    }
+
+  }
+
+
+  localStorage.setItem("products",JSON.stringify(products))
+  alert(updateName + " quantity has been updated")
+  document.getElementById("update_name").value = ""
+  document.getElementById("update_quty").value = ""
+}
+console.log(products)
 
 
 
