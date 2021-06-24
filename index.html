@@ -20,22 +20,22 @@
                 <li>
                     <button class="btn1" id="add_btn" onclick="show_modal_add()">ADD ITEM</button>
                 </li>
-                <li>
+                <!-- <li>
                     <button class="btn2" id="update_qty" onclick="updateForm()">UPDATE QUANTITY</button>
-                </li>
-                <li>
-                    <button class="btn3" id="update_item_detail">UPDATE ITEM DETAILS</button>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
+                    <button class="btn3" id="update_item_detail" onclick="detailsToBeUpdate()">UPDATE ITEM DETAILS</button>
+                </li> -->
+                <!-- <li>
                     <button class="btn4" id="removeItem">REMOVE ITEM</button>
-                </li>
+                </li> -->
             </ul>
         </div>
         <div class="content">
             <div class="top_nav">
                 <ul>
                     <li>
-                        <i class="zmdi zmdi-view-dashboard" onclick="dashboard()"></i> Dashboard 
+                        <i class="zmdi zmdi-view-dashboard" onclick="dashboard()"></i> Stylish Dashboard 
                     </li>
                     <li>
                         <i class="fa fa-sign-in" aria-hidden="true"></i> SignIn
@@ -82,6 +82,10 @@
                                     <th>
                                         Status
                                     </th>
+                                    <th>
+                                        Actions
+                                        
+                                    </th>
                                 </tr>
                             </thead>
                             
@@ -119,7 +123,7 @@
             <button class="modal_add_btn" id="modal_add_btn" onclick="add_item_modal()">Add</button>
 
         </div>
-        <div class="update_backdrop" id="update_backdrop">
+        <!-- <div class="update_backdrop" id="update_backdrop">
             <div class="qty_update" id="qty_update">
                 <h3>Update Quantity</h3> <br>
                 <label for="">Name</label><br>
@@ -130,7 +134,26 @@
                 
                 <button class="cancel" id="cancel1" onclick="dashboard()">Cancel</button>
                 <button class="update" id="update" onclick="updateQuantity()">Update</button>
+            </div> -->
+        </div>
+        <div class="item_detail_update" id="item_detail_update">
+            <div class="item_detail">
+                <h3>Update Item Details</h3>
+                <label for="">Name</label><br>
+                <input type="text" id="detail_name"><br>
+                <label for="">Description</label><br>
+                <input type="text" id="item_description"><br>
+                <label for="">Category</label><br>
+                <input type="text" id="item_category"><br>
+                <label for="">Quantity</label><br>
+                <input type="number" id="item_quantity"><br>
+    
+                
+                <button class="cancel" id="" onclick="closeItemUpdate()">Cancel</button>
+                <button class="update" id="update2" onclick="updatedItems()">Update</button>
+
             </div>
+
         </div>
         
 

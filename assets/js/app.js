@@ -26,17 +26,18 @@ let show_modal = document.getElementById("add_item_modal")
 let show_modal_add = () => {
   show_modal.style.top = "0"
   document.getElementById("backdrop").style.top = "0"
+  dashboard();
 }
 
-let updateForm = () =>{
+let updateForm = () => {
   document.getElementById("update_backdrop").style.display = "block"
   document.getElementById("qty_update").style.display = "block"
 
 }
-let dashboard = () =>{
+let dashboard = () => {
   document.getElementById("update_backdrop").style.display = "none"
   document.getElementById("qty_update").style.display = "none"
-  window.location.href = "./index.html" //refresh homepage automatic
+  // window.location.href = "./index.html" //refresh homepage automatic
 
 }
 
@@ -44,8 +45,16 @@ let cancel = () => {
   document.getElementById("add_item_modal").style.top = "-65vh"
   document.getElementById("backdrop").style.top = "-110vh"
   reset()
+  location.reload()
   // window.location.href = "./index.html"
-  
+
+}
+let detailsToBeUpdate = () =>{
+  document.getElementById("item_detail_update").style.top = "0";
+}
+
+let closeItemUpdate = () =>{
+  document.getElementById("item_detail_update").style.top  = "-110vh"
 }
 
 let reset = () => {
@@ -55,6 +64,7 @@ let reset = () => {
   document.getElementById("qty_number").value = ""
 
 }
+
 
 
 
@@ -92,7 +102,7 @@ let add_item_modal = () => {
   }
 
   reset()
- 
+
 }
 
 
@@ -127,9 +137,9 @@ let figuresCalculation = () => {
   // console.log(products.length)
 
   document.getElementById("numberOfItem").innerText = products.length
-  let quantityNumber =0;
-  let qtyInStock = () =>{
-    for (i=0; i < products.length; i++){
+  let quantityNumber = 0;
+  let qtyInStock = () => {
+    for (i = 0; i < products.length; i++) {
       quantityNumber += Number(products[i].qty_number)
 
       // console.log(qty_number)
@@ -137,16 +147,16 @@ let figuresCalculation = () => {
     }
     document.getElementById("itemInStock").innerText = quantityNumber;
 
-    
+
   }
   qtyInStock()
   let distinctValues = [];
-  for (i=0; i < products.length; i++){
-    if(!distinctValues.includes(products[i].category.toLowerCase())){
+  for (i = 0; i < products.length; i++) {
+    if (!distinctValues.includes(products[i].category.toLowerCase())) {
       distinctValues.push(products[i].category.toLowerCase());
     }
   }
-  
+
   // console.log(distinctValues)
   document.getElementById("totalCategories").innerText = distinctValues.length;
 }
@@ -168,6 +178,8 @@ let displayProducts = () => {
           <td>${products[i].category}</td>
           <td>${products[i].qty_number}</td>
           <td id='status_color${i}'>Available</td>   
+          <td><button class="js_btn" id="upd_${i}" onClick="productGetUpdate(this.id)">Update</button></td>
+          <td><button class="js_btn" id="upd" onClick="">Remove</button></td>
   `
     product_added.append(itemLi)
   }
@@ -182,37 +194,76 @@ let displayProducts = () => {
 }
 displayProducts()
 
-let updateQuantity = () =>{
-  let updateName = document.getElementById("update_name").value
-  let updateValue = document.getElementById("update_quty").value
-  console.log(updateValue)
-  console.log(updateName)
-  let products = JSON.parse(localStorage.getItem("products"))
-  if((updateName === "") || (updateValue === "")){
-    alert("Please enter valid information")
-    return
-  }
-  else{
-    for(i=0; i < products.length; i++){
-      if(products[i].item_name === updateName ){
-       console.log(updateValue)
-        products[i].qty_number = updateValue
-      }
-    }
 
-  }
+//Compare input field and update value
+// let updateQuantity = () => {
+//   let updateName = document.getElementById("update_name").value
+//   let updateValue = document.getElementById("update_quty").value
+
+//   let products = JSON.parse(localStorage.getItem("products"))
+//   if ((updateName === "") || (updateValue === "")) {
+//     alert("Please enter valid information")
+//     return
+//   }
+//   else {
+//     for (i = 0; i < products.length; i++) {
+//       if (products[i].item_name === updateName) {
+//         console.log(updateValue)
+//         products[i].qty_number = updateValue
+//       }
+//     }
+
+//   }
 
 
-  localStorage.setItem("products",JSON.stringify(products))
-  alert(updateName + " quantity has been updated")
-  document.getElementById("update_name").value = ""
-  document.getElementById("update_quty").value = ""
+//   localStorage.setItem("products", JSON.stringify(products))
+//   alert(updateName + " quantity has been updated")
+//   document.getElementById("update_name").value = ""
+//   document.getElementById("update_quty").value = ""
+// }
+// console.log(products)
+
+let idHolder = 0;
+let idQuantity = 0;
+
+
+
+let productGetUpdate = (clicked_id) => {
+  let splits = String(clicked_id).split("_") // This splits the update buttons id eg upd_1 == [upd, 1]
+  let products = JSON.parse(localStorage.getItem("products")) // Gets all the products in local storage
+
+  // Item details
+   let itemName = products[splits[1]].item_name;
+   let itemDescription = products[splits[1]].description;
+   let itemCategory = products[splits[1]].category;
+   let itemQuantity = products[splits[1]].qty_number;
+
+
+   document.getElementById("detail_name").value = itemName;
+   document.getElementById("item_description").value = itemDescription;
+   document.getElementById("item_category").value = itemCategory;
+   document.getElementById("item_quantity").value =itemQuantity;
+
+   idHolder = splits[1];
+   detailsToBeUpdate(); 
 }
-console.log(products)
 
+let updatedItems = () =>{
+let  itemName = document.getElementById("detail_name").value;
+let itemDescription =  document.getElementById("item_description").value;
+let itemCategory =  document.getElementById("item_category").value;
+let itemQuantity = document.getElementById("item_quantity").value
 
+let products = JSON.parse(localStorage.getItem("products"))
 
+products[idHolder].item_name = itemName;
+products[idHolder].description = itemDescription;
+products[idHolder].category = itemCategory;
+products[idHolder].qty_number = itemQuantity;
 
+localStorage.setItem("products",JSON.stringify(products));
+
+}  
 
 
 
