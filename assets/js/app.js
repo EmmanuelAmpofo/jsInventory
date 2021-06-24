@@ -55,6 +55,17 @@ let detailsToBeUpdate = () =>{
 
 let closeItemUpdate = () =>{
   document.getElementById("item_detail_update").style.top  = "-110vh"
+  location.reload()
+}
+
+let deleteId = 0;
+
+let deleteModal = (clicked_id) =>{
+  deleteId = String(clicked_id).split("_")[1]
+  document.getElementById("remove_item").style.display = "block"
+}
+let closeDeleteModal = () =>{
+  document.getElementById("remove_item").style.display = "none"
 }
 
 let reset = () => {
@@ -178,8 +189,9 @@ let displayProducts = () => {
           <td>${products[i].category}</td>
           <td>${products[i].qty_number}</td>
           <td id='status_color${i}'>Available</td>   
-          <td><button class="js_btn" id="upd_${i}" onClick="productGetUpdate(this.id)">Update</button></td>
-          <td><button class="js_btn" id="upd" onClick="">Remove</button></td>
+          <td><i class="fa fa-pencil" aria-hidden="true" id="upd_${i}" onClick="productGetUpdate(this.id)"></i> &nbsp;&nbsp; 
+          <i id="del_${i}" class="fa fa-trash-o" aria-hidden="true" onclick="deleteModal(this.id)"></i></td>
+          
   `
     product_added.append(itemLi)
   }
@@ -223,13 +235,15 @@ displayProducts()
 // }
 // console.log(products)
 
+
+
 let idHolder = 0;
 let idQuantity = 0;
 
 
 
 let productGetUpdate = (clicked_id) => {
-  let splits = String(clicked_id).split("_") // This splits the update buttons id eg upd_1 == [upd, 1]
+  let splits = String(clicked_id).split("_") // This splits the update buttons id eg. upd_1 == [upd, 1]
   let products = JSON.parse(localStorage.getItem("products")) // Gets all the products in local storage
 
   // Item details
@@ -262,8 +276,26 @@ products[idHolder].category = itemCategory;
 products[idHolder].qty_number = itemQuantity;
 
 localStorage.setItem("products",JSON.stringify(products));
+alert("Products Updated Successfully")
+
+location.reload()
 
 }  
 
+
+let removeItem = () =>{
+    let products = JSON.parse(localStorage.getItem("products"));
+    products.splice(deleteId,1);
+    console.log(products)
+    localStorage.setItem("products",JSON.stringify(products));
+
+    location.reload()
+}
+
+
+
+
+
+{/* <td><button class="js_btn" id="upd_${i}" onClick="productGetUpdate(this.id)">Update</button>&nbsp;&nbsp; <i class="fa fa-trash-o" aria-hidden="true"></i></td> */}
 
 

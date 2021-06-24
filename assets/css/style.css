@@ -330,11 +330,17 @@ tbody{
     position: absolute;
 
 }
-.js_btn{
-    background-color: white;
-    border: 1px solid #005b82;
-    color: #005b82;
-    border-radius: 2px;
+.fa-pencil{
+    color: green;
+}
+.fa-pencil:hover{
+    cursor: pointer;
+}
+.fa-trash-o{
+    color: red;
+}
+.fa-trash-o:hover{
+    cursor: pointer;
 }
 .item_detail h3{
     text-align: center;
@@ -381,6 +387,56 @@ tbody{
     background-color: white;
     border: 1px solid red;
     color: red;
+}
+
+.remove_item{
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 3vh;
+    width: 30vw;
+    height: 30vh;
+    position: absolute;
+    display: none;
+    margin-left: 35vw;
+    margin-right: 35vw;
+    color: red;
+    box-shadow: 5px 8px 15px rgb(235, 81, 81);
+}
+
+.remove_item i{
+    font-size: 5vw;
+    margin-left: 3vw;
+    margin-top: 2vh;
+}
+.remove_item button{
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 5vw;
+    height: 5vh;
+    font-size: 2.5vh;
+    float: right;
+    margin-right: 2vw;
+    margin-top: 9vh;
+}
+.remove_item .delete{
+    
+    background-color: rgb(51, 177, 51);
+}
+.remove_item .del_cancel{
+    background-color:  rgb(235, 81, 81);
+}
+.remove_item .delete:hover{
+    background-color: white;
+    border: 1px solid rgb(51, 177, 51);
+    color: rgb(51, 177, 51);
+}
+.remove_item .del_cancel:hover{
+    background-color: white;
+    border: 1px solid rgb(235, 81, 81);
+    color:  rgb(235, 81, 81);
+    
 }
 
 

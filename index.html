@@ -123,22 +123,15 @@
             <button class="modal_add_btn" id="modal_add_btn" onclick="add_item_modal()">Add</button>
 
         </div>
-        <!-- <div class="update_backdrop" id="update_backdrop">
-            <div class="qty_update" id="qty_update">
-                <h3>Update Quantity</h3> <br>
-                <label for="">Name</label><br>
-                <input type="text" id="update_name"><br>
-                <label for="">Quantity</label><br>
-                <input type="number" id="update_quty"><br>
-    
-                
-                <button class="cancel" id="cancel1" onclick="dashboard()">Cancel</button>
-                <button class="update" id="update" onclick="updateQuantity()">Update</button>
-            </div> -->
+        <div class="remove_item" id="remove_item">
+            <i class="fa fa-trash" aria-hidden="true"></i> ARE YOU SURE YOU WANT TO DELETE <br>
+            <button class="del_cancel" id="del_cancel" onclick="closeDeleteModal()">No</button>
+            <button class="delete" id="delete" onclick="removeItem()">Yes</button>
+
         </div>
         <div class="item_detail_update" id="item_detail_update">
             <div class="item_detail">
-                <h3>Update Item Details</h3>
+                <h3>Update Item Details</h3> 
                 <label for="">Name</label><br>
                 <input type="text" id="detail_name"><br>
                 <label for="">Description</label><br>
@@ -149,7 +142,7 @@
                 <input type="number" id="item_quantity"><br>
     
                 
-                <button class="cancel" id="" onclick="closeItemUpdate()">Cancel</button>
+                <button class="cancel"  id="" onclick="closeItemUpdate()">Cancel</button>
                 <button class="update" id="update2" onclick="updatedItems()">Update</button>
 
             </div>
