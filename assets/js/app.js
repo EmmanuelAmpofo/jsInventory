@@ -134,7 +134,7 @@ let statusColor = () => {
       document.getElementById(`status_color${i}`).innerText = "Out of Stock"
     }
     else if ((qty_number >= 1) && (qty_number <= 20)) {
-      document.getElementById(`status_color${i}`).style.color = "gold"
+      document.getElementById(`status_color${i}`).style.color = "goldenrod"
       document.getElementById(`status_color${i}`).innerText = "Almost Out of Stock"
     }
     else {
@@ -177,8 +177,8 @@ let figuresCalculation = () => {
   document.getElementById("totalCategories").innerText = distinctValues.length;
 }
 
-//add products to table in html
 
+//add products to table in html
 let product_added = document.getElementById("table_body")
 let displayProducts = () => {
   let i = 0;
@@ -267,6 +267,8 @@ let productGetUpdate = (clicked_id) => {
    detailsToBeUpdate(); 
 }
 
+
+//Updating products stored in localstorage and saving it back to localstorage
 let updatedItems = () =>{
 let  itemName = document.getElementById("detail_name").value;
 let itemDescription =  document.getElementById("item_description").value;
@@ -275,10 +277,18 @@ let itemQuantity = document.getElementById("item_quantity").value
 
 let products = JSON.parse(localStorage.getItem("products"))
 
-products[idHolder].item_name = itemName;
-products[idHolder].description = itemDescription;
-products[idHolder].category = itemCategory;
-products[idHolder].qty_number = itemQuantity;
+if((itemName === "") || (itemDescription === "") || (itemCategory === "") || (itemQuantity === "") || (itemQuantity < 0)){
+  alert("Fields cannot be empty or negative")
+  return
+}
+else{
+  products[idHolder].item_name = itemName;
+  products[idHolder].description = itemDescription;
+  products[idHolder].category = itemCategory;
+  products[idHolder].qty_number = itemQuantity;
+}
+
+
 
 localStorage.setItem("products",JSON.stringify(products));
 alert("Products Updated Successfully")
