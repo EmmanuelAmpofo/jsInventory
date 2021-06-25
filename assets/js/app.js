@@ -55,6 +55,7 @@ let detailsToBeUpdate = () =>{
 
 let closeItemUpdate = () =>{
   document.getElementById("item_detail_update").style.top  = "-110vh"
+  
   location.reload()
 }
 
@@ -63,9 +64,11 @@ let deleteId = 0;
 let deleteModal = (clicked_id) =>{
   deleteId = String(clicked_id).split("_")[1]
   document.getElementById("remove_item").style.display = "block"
+  document.getElementById("backdrop").style.top = "0"
 }
 let closeDeleteModal = () =>{
   document.getElementById("remove_item").style.display = "none"
+  document.getElementById("backdrop").style.top = "-110vh"
 }
 
 let reset = () => {
@@ -158,9 +161,11 @@ let figuresCalculation = () => {
     }
     document.getElementById("itemInStock").innerText = quantityNumber;
 
-
   }
+
   qtyInStock()
+
+  
   let distinctValues = [];
   for (i = 0; i < products.length; i++) {
     if (!distinctValues.includes(products[i].category.toLowerCase())) {
