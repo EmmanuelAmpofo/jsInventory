@@ -97,7 +97,7 @@ let add_item_modal = () => {
     "qty_number": qty_number
   }
 
-  if ((item_name === "") || (description === "") || (category === "") || (qty_number === "")) {
+  if ((item_name === "") || (description === "") || (category === "") || (qty_number === "") || (qty_number < 0)) {
     alert("Please enter valid information to save product")
   }
   else {
